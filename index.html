@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The DMs</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function sendMessage() {
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value;
+      socket.emit('chat message', message);
+      messageInput.value = '';
+    }
+
+    socket.on('chat message', (msg) => {
+      const messageList = document.getElementById('messageList');
+      const li = document.createElement('li');
+      li.textContent = msg;
+      messageList.appendChild(li);
+    });
+  </script>
+  <style>
+    body {
+      background-image: url("ps.jpeg");
+    }
+    li {color: white;}
+  </style>
+</head>
+<body>
+  <ul id="messageList"></ul>
+  <input type="text" id="messageInput" placeholder="message" />
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>
