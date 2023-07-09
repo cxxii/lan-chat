@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const serverIP = '192.168.77.194';
+const serverIP = '';
 
 http.listen(3000, serverIP, () => {
   console.log('Server listening on port 3000');
